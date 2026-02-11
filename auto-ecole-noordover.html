@@ -1,349 +1,584 @@
-
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Auto-école Noordover | Prenez le volant, votre avenir s'illumine !</title>
+    <meta name="description" content="Auto-école Noordover - Prenez le volant, votre avenir s'illumine !. Auto-école à proximité. Formations permis B, code et conduite accompagnée.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Auto-école Noordover | Prenez le volant, votre avenir s'illumine !">
+    <meta property="og:description" content="Auto-école Noordover - Prenez le volant, votre avenir s'illumine !. Auto-école à proximité. Formations permis B, code et conduite accompagnée.">
+    <meta property="og:image" content="https://storage-cdn.weweb.io/c4cb7b98-65f6-4d6d-b2d2-e11fe818e7a8/users-storage/dde3f654/Gemini_Generated_Image_r8dvlwr8dvlwr8dv.png">
+
+    <link rel="icon" type="image/x-icon" href="https://storage-cdn.weweb.io/c4cb7b98-65f6-4d6d-b2d2-e11fe818e7a8/users-storage/4709cb0b/Gemini_Generated_Image_g3tgqig3tgqig3tg.png">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    fontFamily: {
+                        display: ['Space Grotesk', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
                     colors: {
-                        brand: { DEFAULT: '#1a2b49', hover: '#1a2b49dd' },
-                        accent: { DEFAULT: '#ffd700' }
+                        brand: {
+                            500: '#1a2b49', /* COULEUR PRINCIPALE */
+                            600: '#1a2b49',
+                            200: '#e0e7ff', /* Couleur claire décorative */
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 20px 40px -15px rgba(0, 0, 0, 0.1)',
+                        'gleam': '0 0 20px rgba(255, 255, 255, 0.4)'
                     }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #111827; color: white; }
-        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .glass-strong { background: rgba(17, 24, 39, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        .heading-gradient { background: linear-gradient(to right, #fff, #1a2b49); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        /* Chatbot Animations */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .msg { padding: 8px 12px; border-radius: 12px; margin-bottom: 8px; font-size: 14px; max-width: 80%; animation: fadeIn 0.3s ease-out; }
-        .msg-ia { background: rgba(255,255,255,0.1); color: #fff; align-self: flex-start; border-bottom-left-radius: 2px; }
-        .msg-user { background: #1a2b49; color: white; align-self: flex-end; border-bottom-right-radius: 2px; margin-left: auto; }
+        :root {
+            --brand-color: {
+                    {
+                    primary_color
+                }
+            }
+
+            ;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1e293b;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Background animé */
+        .blob {
+            position: absolute;
+            filter: blur(60px);
+            opacity: 0.6;
+            z-index: -1;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(20px, 40px) rotate(10deg);
+            }
+
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+        }
+
+        /* Widget Chat */
+        .kreno-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 50;
+        }
+
+        .chat-trigger {
+            width: 55px;
+            height: 55px;
+            background: var(--brand-color);
+            color: white;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .chat-trigger:hover {
+            transform: translateY(-5px) rotate(5deg);
+        }
+
+        .chat-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 340px;
+            height: 480px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            border: 1px solid #eef2ff;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Chat Styles Internes */
+        .chat-header {
+            background: var(--brand-color);
+            padding: 15px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-body {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-input {
+            padding: 10px;
+            background: white;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 5px;
+        }
+
+        .msg {
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            max-width: 85%;
+        }
+
+        .msg-ia {
+            background: white;
+            border: 1px solid #e2e8f0;
+            color: #334155;
+            align-self: flex-start;
+        }
+
+        .msg-user {
+            background: var(--brand-color);
+            color: white;
+            align-self: flex-end;
+        }
+
+        /* Effet Hover Cartes */
+        .hover-card {
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .hover-card:hover {
+            transform: translateY(-8px);
+            border-color: #e0e7ff;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+        }
     </style>
 </head>
-<body class="antialiased selection:bg-brand selection:text-white">
-    <nav class="fixed w-full z-50 top-0 start-0 glass-strong">
-        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between p-4">
-            <a href="#" class="flex items-center space-x-3">
-                <img src="https://storage-cdn.weweb.io/c4cb7b98-65f6-4d6d-b2d2-e11fe818e7a8/users-storage/4709cb0b/Gemini_Generated_Image_g3tgqig3tgqig3tg.png" class="h-10 w-10 rounded-full object-cover border-2 border-brand" alt="Logo">
-                <span class="self-center text-2xl font-bold whitespace-nowrap text-white">Auto-école Noordover</span>
+
+<body class="overflow-x-hidden">
+
+    <nav class="fixed w-full z-40 top-0 bg-white/80 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2">
+                <img src="https://storage-cdn.weweb.io/c4cb7b98-65f6-4d6d-b2d2-e11fe818e7a8/users-storage/4709cb0b/Gemini_Generated_Image_g3tgqig3tgqig3tg.png" class="w-12 h-12 rounded-full object-cover border border-slate-100 shadow-sm"
+                    alt="Auto-école Noordover"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+
+                <div class="hidden items-center gap-2" style="display:none;">
+                    <div
+                        class="w-10 h-10 bg-brand-500 rounded-xl flex items-center justify-center text-white font-bold text-xl rotate-3 transform hover:rotate-0 transition">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <span class="font-display font-bold text-xl tracking-tight text-slate-800">Auto-école Noordover</span>
+                </div>
             </a>
-            <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
-                 <a href="#offres" class="hover:text-brand transition">Nos Formules</a>
-                 <a href="#avis" class="hover:text-brand transition">Avis Élèves</a>
-                 <span class="text-gray-400 border-l border-gray-700 pl-6 flex items-center gap-2">
-                    <i class="fa-solid fa-lock text-xs"></i> Espace élève disponible
-                 </span>
+
+            <div class="hidden md:flex items-center gap-8 font-medium text-slate-600">
+                <a href="#vibe" class="hover:text-brand-500 transition">L'Expérience</a>
+                <a href="#offres" class="hover:text-brand-500 transition">Offres</a>
+                <a href="#avis" class="hover:text-brand-500 transition">Avis</a>
             </div>
+
+            <button onclick="toggleChat()"
+                class="bg-slate-900 text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-brand-500 transition-colors shadow-lg hover:shadow-brand-500/30">
+                Contactez-nous 🚀
+            </button>
         </div>
     </nav>
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <!-- Background -->
-        <div class="absolute inset-0 z-0">
-            <img src="https://storage-cdn.weweb.io/c4cb7b98-65f6-4d6d-b2d2-e11fe818e7a8/users-storage/dde3f654/Gemini_Generated_Image_r8dvlwr8dvlwr8dv.png" class="w-full h-full object-cover opacity-30">
-            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent"></div>
-        </div>
-        
-        <div class="container mx-auto px-4 z-10 text-center pt-24">
-            <div class="inline-block px-4 py-1 rounded-full bg-brand/10 border border-brand/30 text-sm font-bold text-brand mb-6 animate-pulse">
-                🚀 Rejoignez la meilleure auto-école
-            </div>
-            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight max-w-5xl mx-auto">
-                <span class="heading-gradient">PRENEZ LE VOLANT, VOTRE AVENIR S'ILLUMINE !</span>
-            </h1>
-            <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-                Passez votre permis rapidement et en toute confiance. 
-                Une formation adaptée à votre rythme avec des outils modernes.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#offres" class="px-8 py-4 bg-brand text-white text-lg font-bold rounded-xl shadow-lg shadow-brand/20 transition hover:bg-opacity-90 transform hover:-translate-y-1">
-                    Voir les packs 📦
-                </a>
-                <button onclick="toggleChat()" class="px-8 py-4 glass text-white text-lg font-bold rounded-xl transition hover:bg-white/10">
-                    Poser une question 💬
-                </button>
+
+    <section class="min-h-screen pt-32 pb-20 relative flex items-center">
+        <div class="blob bg-purple-200 w-96 h-96 rounded-full top-20 -left-20"></div>
+        <div class="blob bg-blue-100 w-80 h-80 rounded-full bottom-20 right-0 delay-1000"></div>
+
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="relative z-10">
+                <div
+                    class="inline-flex items-center gap-2 bg-slate-50 text-brand-500 px-4 py-2 rounded-full text-sm font-bold mb-6 border border-slate-100 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                    Service Premium
+                </div>
+                <h1 class="text-5xl md:text-7xl font-display font-bold leading-tight mb-6 text-slate-900">
+                    Prenez le volant, votre avenir s'illumine !
+                </h1>
+                <p class="text-xl text-slate-500 mb-8 leading-relaxed">
+                    4 mois 
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="toggleChat()"
+                        class="px-8 py-4 bg-brand-500 text-white rounded-2xl font-bold text-lg hover:shadow-soft transition transform hover:-translate-y-1">
+                        Je m'inscris
+                    </button>
+                    <a href="tel:06 12 34 56 78"
+                        class="px-8 py-4 bg-white text-slate-900 border-2 border-slate-100 rounded-2xl font-bold text-lg hover:border-brand-500 hover:text-brand-500 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-phone"></i> 06 12 34 56 78
+                    </a>
+                </div>
+
+                <div class="mt-8 flex items-center gap-4">
+                    <div class="flex -space-x-4">
+                        <div
+                            class="w-10 h-10 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-xs">
+                            👤</div>
+                        <div
+                            class="w-10 h-10 rounded-full border-2 border-white bg-slate-300 flex items-center justify-center text-xs">
+                            👤</div>
+                        <div
+                            class="w-10 h-10 rounded-full border-2 border-white bg-slate-400 flex items-center justify-center text-xs">
+                            👤</div>
+                        <div
+                            class="w-10 h-10 rounded-full border-2 border-white bg-brand-500 text-white flex items-center justify-center text-xs font-bold">
+                            +75
+                        </div>
+                    </div>
+                    <p class="text-sm font-medium text-slate-500">+75 clients accompagnés</p>
+                </div>
             </div>
 
-            <!-- Trust Indicators -->
-            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto border-t border-gray-800 pt-8 opacity-70">
-                <div class="flex flex-col items-center">
-                    <span class="text-2xl font-bold text-white">98%</span>
-                    <span class="text-xs uppercase tracking-wider">Réussite</span>
-                </div>
-                 <div class="flex flex-col items-center">
-                    <span class="text-2xl font-bold text-white">CPF</span>
-                    <span class="text-xs uppercase tracking-wider">Éligible</span>
-                </div>
-                 <div class="flex flex-col items-center">
-                    <span class="text-2xl font-bold text-white">2024</span>
-                    <span class="text-xs uppercase tracking-wider">Véhicules</span>
-                </div>
-                 <div class="flex flex-col items-center">
-                    <span class="text-2xl font-bold text-white">24/7</span>
-                    <span class="text-xs uppercase tracking-wider">Code en ligne</span>
+            <div class="relative">
+                <div
+                    class="relative z-10 bg-white p-4 rounded-[40px] shadow-2xl rotate-2 hover:rotate-0 transition duration-500">
+                    <img src="https://storage-cdn.weweb.io/c4cb7b98-65f6-4d6d-b2d2-e11fe818e7a8/users-storage/dde3f654/Gemini_Generated_Image_r8dvlwr8dvlwr8dv.png"
+                        onerror="this.src='https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1000&auto=format&fit=crop'"
+                        class="w-full h-[500px] object-cover rounded-[32px]" alt="Image principale">
+
+                    <div
+                        class="absolute bottom-10 left-10 bg-white/90 backdrop-blur p-4 rounded-2xl shadow-lg flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600 text-lg">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <div>
+                            <div class="text-xs text-slate-500 font-bold uppercase">Qualité</div>
+                            <div class="text-sm font-bold text-slate-900">Garantie 100%</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="py-24 bg-gray-900">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16 max-w-3xl mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">Pourquoi choisir <span class="text-brand">Auto-école Noordover</span> ?</h2>
-                <p class="text-gray-400">Nous ne formons pas seulement des conducteurs, nous formons des pilotes responsables. Votre sécurité est notre métier.</p>
+
+    <section class="py-16 bg-white border-y border-slate-50">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="inline-block p-4 rounded-2xl bg-slate-50 mb-6 text-3xl">🤝</div>
+            <h2 class="text-3xl font-display font-bold mb-6 text-slate-900">Notre Engagement</h2>
+            <p class="text-xl text-slate-600 leading-relaxed font-light">
+                4 mois 
+            </p>
+        </div>
+    </section>
+
+    <section id="vibe" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-4xl font-display font-bold mb-4">L'Expérience Auto-école Noordover</h2>
+                <p class="text-lg text-slate-500">Une approche moderne, efficace et centrée sur vos besoins.</p>
             </div>
-            
-            <div class="grid md:grid-cols-3 gap-8 text-center md:text-left">
-                <!-- Feature 1 -->
-                <div class="glass p-8 rounded-3xl hover:bg-white/5 transition duration-300">
-                    <div class="w-14 h-14 bg-blue-500/20 text-blue-400 rounded-2xl flex items-center justify-center text-2xl mb-6 mx-auto md:mx-0">
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-3xl hover-card text-center group">
+                    <div
+                        class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-3xl mb-6 text-blue-500 mx-auto group-hover:scale-110 transition">
                         <i class="fa-solid fa-tablet-screen-button"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Technologie Moderne</h3>
-                    <p class="text-gray-400">Suivi pédagogique sur tablette, réservation en ligne et code sur smartphone. Vivez l'auto-école 2.0.</p>
+                    <h3 class="text-xl font-display font-bold mb-3">Pédagogie d'Excellence
+                        }</h3>
+                    <p class="text-slate-500">Des moniteurs diplômés d'état pour vous accompagner avec bienveillance.</p>
                 </div>
-                <!-- Feature 2 -->
-                <div class="glass p-8 rounded-3xl hover:bg-white/5 transition duration-300">
-                    <div class="w-14 h-14 bg-green-500/20 text-green-400 rounded-2xl flex items-center justify-center text-2xl mb-6 mx-auto md:mx-0">
+
+                <div class="bg-white p-8 rounded-3xl hover-card text-center group">
+                    <div
+                        class="w-16 h-16 bg-purple-50 rounded-2xl flex items-center justify-center text-3xl mb-6 text-purple-500 mx-auto group-hover:scale-110 transition">
                         <i class="fa-solid fa-car-side"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Flotte Récente</h3>
-                    <p class="text-gray-400">Apprenez sur des véhicules neufs, sûrs et confortables. Boîte manuelle ou automatique disponible.</p>
+                    <h3 class="text-xl font-display font-bold mb-3">Accompagnement Connecté
+                    </h3>
+                    <p class="text-slate-500">Suivez votre progression en temps réél grace à notre application
+                        personnalisée. Un parcours transparent pour une réussite assurée.</p>
                 </div>
-                <!-- Feature 3 -->
-                <div class="glass p-8 rounded-3xl hover:bg-white/5 transition duration-300">
-                     <div class="w-14 h-14 bg-purple-500/20 text-purple-400 rounded-2xl flex items-center justify-center text-2xl mb-6 mx-auto md:mx-0">
+
+                <div class="bg-white p-8 rounded-3xl hover-card text-center group">
+                    <div
+                        class="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center text-3xl mb-6 text-orange-500 mx-auto group-hover:scale-110 transition">
                         <i class="fa-solid fa-user-graduate"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Pédagogie Positive</h3>
-                    <p class="text-gray-400">Nos moniteurs sont patients et expérimentés. Apprenez sans stress à votre propre rythme.</p>
+                    <h3 class="text-xl font-display font-bold mb-3">Voiture premium
+                    </h3>
+                    <p class="text-slate-500">Apprentissage sur des véhicules récents et sécurisés (Audi A1, Peugeot 208).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="offres" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-display font-bold mb-12 text-center">Nos Formules</h2>
+
+            <div class="grid md:grid-cols-3 gap-8 items-start">
+                <div class="border border-slate-200 rounded-[32px] p-8 hover:border-brand-500 transition">
+                    <h3 class="text-lg font-bold text-slate-500 mb-2">{{pack_1_title}}</h3>
+                    <div class="text-4xl font-display font-bold text-slate-900 mb-6">150&euro;</div>
+                    <ul class="space-y-4 mb-8 text-slate-600">
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-green-500 mt-1"></i> Accès 24/7
+                        </li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-green-500 mt-1"></i> Suivi progression
+                        </li>
+                    </ul>
+                    <button
+                        class="w-full py-3 border-2 border-slate-900 rounded-xl font-bold hover:bg-slate-900 hover:text-white transition">Choisir</button>
+                </div>
+
+                <div class="bg-slate-900 text-white rounded-[32px] p-8 relative transform md:-translate-y-4 shadow-2xl">
+                    <div
+                        class="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-500 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                        Populaire
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-300 mb-2">Permis B</h3>
+                    <div class="text-5xl font-display font-bold mb-6">1100</div>
+                    <p class="text-sm text-slate-400 mb-6">Le meilleur rapport qualité/prix ✨</p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-brand-500 mt-1"></i> Accès 24/7
+                        </li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-brand-500 mt-1"></i> Code inclus
+                        </li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-brand-500 mt-1"></i> Code inclus
+                        </li>
+                    </ul>
+                    <button onclick="toggleChat()"
+                        class="w-full py-4 bg-brand-500 rounded-xl font-bold hover:bg-white hover:text-brand-500 transition shadow-gleam">
+                        Commander
+                    </button>
+                </div>
+
+                <div class="border border-slate-200 rounded-[32px] p-8 hover:border-brand-500 transition">
+                    <h3 class="text-lg font-bold text-slate-500 mb-2">Conduite Accompagnée</h3>
+                    <div class="text-4xl font-display font-bold text-slate-900 mb-6">Sur devis</div>
+                    <ul class="space-y-4 mb-8 text-slate-600">
+                        <li class="flex gap-3"><i class="fa-solid fa-star text-orange-500 mt-1"></i> {infosoffre3.1}}
+                        </li>
+                        <li class="flex gap-3"><i class="fa-solid fa-star text-orange-500 mt-1"></i>Priorité examen
+                        </li>
+                    </ul>
+                    <button
+                        class="w-full py-3 border-2 border-slate-900 rounded-xl font-bold hover:bg-slate-900 hover:text-white transition">
+                        Contactez-nous
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="avis" class="py-24 bg-slate-50 relative overflow-hidden">
+        <div class="blob bg-brand-500/10 w-full h-full top-0 left-0"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <h2 class="text-4xl font-display font-bold mb-4 text-center">Ce qu'ils pensent de nous</h2>
+
+            <div class="flex justify-center items-center gap-3 mb-12 bg-white inline-flex mx-auto px-6 py-2 rounded-full shadow-sm border border-slate-100"
+                style="display: table;">
+                <div class="flex text-yellow-400 text-xl">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                        class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <span class="font-bold text-xl text-slate-800">4.8/5</span>
+                <span class="text-slate-400 text-sm font-medium">sur Google</span>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-8 rounded-[24px] shadow-sm hover:shadow-md transition">
+                    <div class="flex text-yellow-400 mb-4 text-sm"><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-slate-600 mb-6 italic leading-relaxed">"Formation de qualité, moniteurs patients et pédagogues."</p>
+                    <div class="flex items-center gap-3 border-t border-slate-50 pt-4">
+                        <div
+                            class="w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                            <i class="fa-solid fa-user"></i></div>
+                        <div class="font-bold text-slate-900 text-sm">Marie L.</div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-[24px] shadow-sm hover:shadow-md transition">
+                    <div class="flex text-yellow-400 mb-4 text-sm"><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-slate-600 mb-6 italic leading-relaxed">"J'ai obtenu mon permis du premier coup grâce à cette auto-école !"</p>
+                    <div class="flex items-center gap-3 border-t border-slate-50 pt-4">
+                        <div
+                            class="w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                            <i class="fa-solid fa-user"></i></div>
+                        <div class="font-bold text-slate-900 text-sm">Thomas B.</div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-[24px] shadow-sm hover:shadow-md transition">
+                    <div class="flex text-yellow-400 mb-4 text-sm"><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p class="text-slate-600 mb-6 italic leading-relaxed">"Équipe très professionnelle et vraiment à l'écoute."</p>
+                    <div class="flex items-center gap-3 border-t border-slate-50 pt-4">
+                        <div
+                            class="w-8 h-8 bg-brand-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                            <i class="fa-solid fa-user"></i></div>
+                        <div class="font-bold text-slate-900 text-sm">Sophie M.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-white border-t border-slate-100 py-16">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-12">
+
+            <div class="text-center md:text-left">
+                <h2 class="font-display font-bold text-2xl mb-4 text-slate-900">Auto-école Noordover<span
+                        class="text-brand-500">.</span></h2>
+                <p class="text-slate-500 text-sm mb-6">Auto-école Noordover - Votre auto-école à . Paiement accepté : CB, Espèces, Chèque, Paiement en 3x ou 4x.</p>
+                <div class="flex justify-center md:justify-start gap-4 text-2xl">
+                    
+                    
+                    
+                    
+                    
                 </div>
             </div>
 
-            <!-- Internal Comments (Philosophy) integrated here if exists -->
-            
-        </div>
-    </section>
-        <section id="offres" class="py-24 bg-gray-950 relative overflow-hidden">
-             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand opacity-5 rounded-full blur-[100px] pointer-events-none"></div>
-            <div class="container mx-auto px-4 z-10 relative">
-                <h2 class="text-4xl font-bold text-center mb-16">Formules Permis</h2>
-                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
-                    
-            <div class="glass p-8 rounded-3xl relative group flex flex-col hover:border-gray-500 transition duration-300">
-                
-                <div class="mb-4">
-                     <h3 class="text-xl font-bold text-gray-300">Le Pack "Étincelle" - permis B </h3>
-                     <div class="text-4xl font-bold text-white mt-2">1100€</div>
-                </div>
-                <ul class="space-y-4 text-gray-400 mb-8 flex-grow">
-                     <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-500"></i> Tout inclus</li>
-                     <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-500"></i> Accès en ligne</li>
-                     <li class="flex items-center gap-3"><i class="fa-solid fa-info-circle text-brand"></i> Le Concept : Le strict nécessaire pour respecter la loi et passer le permis, sans fioritures.  Ce qu'il contient :  📱 Accès Code de la route en ligne (24h/24) + Salle.  🚗 20 heures de conduite (minimum légal).  📋 Frais de dossier & inscription inclus.  🏁 1 Accompagnement à l'examen pratique.  La promesse : "L'indépendance à portée de main, au meilleur prix."</li>
-                </ul>
-                <button onclick="toggleChat()" class="w-full py-3 rounded-xl border border-gray-600 hover:bg-gray-700 font-bold transition">
-                    Choisir
-                </button>
+            <div class="text-center md:text-left">
+                <h3 class="font-bold text-slate-900 mb-4 uppercase tracking-wide text-sm">Contact</h3>
+                <p class="mb-3 text-slate-600 hover:text-brand-500 transition"><i
+                        class="fa-solid fa-phone mr-2 text-brand-500"></i> 06 12 34 56 78</p>
+                <p class="mb-3 text-slate-600 hover:text-brand-500 transition"><i
+                        class="fa-solid fa-envelope mr-2 text-brand-500"></i> contact@noordover-conduite.fr</p>
             </div>
-            <div class="glass p-8 rounded-3xl relative group flex flex-col border-brand shadow-2xl shadow-brand/10 scale-105 z-10 bg-gray-800 transition duration-300">
-                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-brand text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg uppercase tracking-wide">Recommandé</div>
-                <div class="mb-4">
-                     <h3 class="text-xl font-bold text-gray-300">Le Pack "Rayonnement"</h3>
-                     <div class="text-4xl font-bold text-white mt-2">980€</div>
-                </div>
-                <ul class="space-y-4 text-gray-400 mb-8 flex-grow">
-                     <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-500"></i> Tout inclus</li>
-                     <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-500"></i> Accès en ligne</li>
-                     <li class="flex items-center gap-3"><i class="fa-solid fa-info-circle text-brand"></i> Le Concept : Une formation plus complète pour éviter le stress et maximiser les chances de réussite du premier coup.  Ce qu'il contient :  📱 Accès Code complet (Livre + Ligne + Salle).  🚗 25 ou 30 heures de conduite (au choix).  🔄 1 Examen blanc (Mise en situation réelle).  🎓 Suivi pédagogique personnalisé.  🏁 1 Accompagnement à l'examen pratique.  La promesse : "Prenez le temps de briller sur la route."</li>
-                </ul>
-                <button onclick="toggleChat()" class="w-full py-3 rounded-xl bg-brand text-white font-bold transition">
-                    Choisir
-                </button>
-            </div>
-            <div class="glass p-8 rounded-3xl relative group flex flex-col hover:border-gray-500 transition duration-300">
-                
-                <div class="mb-4">
-                     <h3 class="text-xl font-bold text-gray-300">Le Pack "Zénith"</h3>
-                     <div class="text-4xl font-bold text-white mt-2">1400€</div>
-                </div>
-                <ul class="space-y-4 text-gray-400 mb-8 flex-grow">
-                     <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-500"></i> Tout inclus</li>
-                     <li class="flex items-center gap-3"><i class="fa-solid fa-check text-green-500"></i> Accès en ligne</li>
-                     <li class="flex items-center gap-3"><i class="fa-solid fa-info-circle text-brand"></i> Le Concept : Obtenir le permis le plus rapidement possible avec un planning prioritaire.  Ce qu'il contient :  🚀 Formation au Code en accéléré (Stage 3 jours).  🗓️ Planning de conduite prioritaire (condensé sur 2 à 4 semaines).  🚗 30 heures de conduite intensives.  🔄 2 Examens blancs pour être sûr à 100%.  🏁 Présentation prioritaire à l'examen.  La promesse : "Votre permis à la vitesse de la lumière."</li>
-                </ul>
-                <button onclick="toggleChat()" class="w-full py-3 rounded-xl border border-gray-600 hover:bg-gray-700 font-bold transition">
-                    Choisir
-                </button>
-            </div>
-                </div>
-            </div>
-        </section>
-    <section id="infos" class="py-20 relative">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-                <div>
-                     <h3 class="text-2xl font-bold mb-6">Nous contacter</h3>
-                     <div class="glass p-8 rounded-3xl space-y-6">
-                        <div class="flex items-start gap-4">
-                             <div class="w-10 h-10 rounded-full bg-brand flex-shrink-0 flex items-center justify-center text-white"><i class="fa-solid fa-location-dot"></i></div>
-                             <div>
-                                <p class="font-bold text-gray-200">Adresse</p>
-                                <p class="text-gray-400">Auto-école Noordover 12 Avenue de la Liberté 75009 Paris</p>
-                             </div>
-                        </div>
-                         <div class="flex items-start gap-4">
-                             <div class="w-10 h-10 rounded-full bg-brand flex-shrink-0 flex items-center justify-center text-white"><i class="fa-solid fa-phone"></i></div>
-                             <div>
-                                <p class="font-bold text-gray-200">Téléphone</p>
-                                <p class="text-gray-400">06 12 34 56 78</p>
-                             </div>
-                        </div>
-                         <div class="mt-6 pt-6 border-t border-gray-700">
-                            <iframe src="https://maps.google.com/maps?hl=fr&gl=fr&um=1&ie=UTF-8&fb=1&sa=X&ftid=0x47dc8b4ad7a0d2a1:0xfb3a65d9855093f1" class="w-full h-48 rounded-xl opacity-80 hover:opacity-100 transition" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                         </div>
-                     </div>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-bold mb-6">Horaires d'ouverture</h3>
-                    <div class="glass p-8 rounded-3xl">
-                        <div class="flex justify-between py-2 border-b border-gray-700 last:border-0 text-sm">
-            <span class="text-gray-400">Lundi</span>
-            <span class="font-bold text-white">Fermé</span>
-        </div><div class="flex justify-between py-2 border-b border-gray-700 last:border-0 text-sm">
-            <span class="text-gray-400">Lundi</span>
-            <span class="font-bold text-white">14h-19h</span>
-        </div><div class="flex justify-between py-2 border-b border-gray-700 last:border-0 text-sm">
-            <span class="text-gray-400">Mardi</span>
-            <span class="font-bold text-white">10h-13h</span>
-        </div><div class="flex justify-between py-2 border-b border-gray-700 last:border-0 text-sm">
-            <span class="text-gray-400">Mardi</span>
-            <span class="font-bold text-white">14h-19h</span>
-        </div><div class="flex justify-between py-2 border-b border-gray-700 last:border-0 text-sm">
-            <span class="text-gray-400">Mercredi</span>
-            <span class="font-bold text-white">10h-13h</span>
-        </div><div class="flex justify-between py-2 border-b border-gray-700 last:border-0 text-sm">
-            <span class="text-gray-400">Mercredi</span>
-            <span class="font-bold text-white">14h-19h</span>
-        </div><div class="flex justify-between py-2 border-b border-gray-700 last:border-0 text-sm">
-            <span class="text-gray-400">Jeudi</span>
-            <span class="font-bold text-white">10h-13h</span>
-        </div><div class="flex justify-between py-2 border-b border-gray-700 last:border-0 text-sm">
-            <span class="text-gray-400">Jeudi</span>
-            <span class="font-bold text-white">14h-19h</span>
-        </div><div class="flex justify-between py-2 border-b border-gray-700 last:border-0 text-sm">
-            <span class="text-gray-400">Vendredi</span>
-            <span class="font-bold text-white">10h-13h</span>
-        </div><div class="flex justify-between py-2 border-b border-gray-700 last:border-0 text-sm">
-            <span class="text-gray-400">Vendredi</span>
-            <span class="font-bold text-white">14h-19h</span>
-        </div><div class="flex justify-between py-2 border-b border-gray-700 last:border-0 text-sm">
-            <span class="text-gray-400">Samedi</span>
-            <span class="font-bold text-white">09h-14h</span>
-        </div><div class="flex justify-between py-2 border-b border-gray-700 last:border-0 text-sm">
-            <span class="text-gray-400">Samedi</span>
-            <span class="font-bold text-white">Fermé</span>
-        </div><div class="flex justify-between py-2 border-b border-gray-700 last:border-0 text-sm">
-            <span class="text-gray-400">Dimanche</span>
-            <span class="font-bold text-white">Fermé</span>
-        </div><div class="flex justify-between py-2 border-b border-gray-700 last:border-0 text-sm">
-            <span class="text-gray-400">Dimanche</span>
-            <span class="font-bold text-white">Fermé</span>
-        </div>
-                    </div>
+
+            <div class="text-center md:text-left">
+                <h3 class="font-bold text-slate-900 mb-4 uppercase tracking-wide text-sm">Horaires</h3>
+                <div
+                    class="bg-slate-50 p-4 rounded-xl text-slate-600 text-sm whitespace-pre-line border border-slate-100 inline-block md:block">
+                    Lundi:  / 14h-19h
+Mardi: 10h-13h / 14h-19h
+Mercredi: 10h-13h / 14h-19h
+Jeudi: 10h-13h / 14h-19h
+Vendredi: 10h-13h / 14h-19h
+Samedi: 09h-14h / 
+Dimanche:  / 
                 </div>
             </div>
         </div>
-    </section>
-    <footer class="py-12 border-t border-gray-800 bg-gray-950 text-center text-gray-500 text-sm">
-        <p class="mb-4 text-white text-lg font-bold">Auto-école Noordover</p>
-        <p class="max-w-md mx-auto mb-6">Agrément préfectoral - Tous droits réservés © 2026</p>
-        <div class="flex justify-center gap-4 text-2xl opacity-40">
-            <i class="fa-solid fa-credit-card" title="CB"></i><i class="fa-solid fa-credit-card" title="Espèces"></i><i class="fa-solid fa-credit-card" title="Chèque"></i><i class="fa-solid fa-credit-card" title="Paiement en 3x ou 4x"></i>
+
+        <div class="text-center mt-12 pt-8 border-t border-slate-50 text-slate-400 text-sm">
+            © 2026 Auto-école Noordover - Tous droits réservés.
         </div>
     </footer>
-    <!-- WIDGET -->
-    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: 'Outfit', sans-serif;">
-        <div id="chatWindow" style="display: none; flex-direction: column; width: 350px; height: 500px; background: #1f2937; border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); border: 1px solid #374151; overflow: hidden;">
-            <div style="background: #1a2b49; padding: 16px; display: flex; align-items: center; justify-content: space-between;">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <div style="width: 32px; height: 32px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
-                        <i class="fa-solid fa-robot"></i>
-                    </div>
-                    <div>
-                        <div style="color: white; font-weight: bold; font-size: 14px;">Assistant Virtuel</div>
-                        <div style="color: rgba(255,255,255,0.7); font-size: 11px;">En ligne</div>
-                    </div>
+
+    <div class="kreno-widget">
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center"><i
+                            class="fa-solid fa-robot text-brand-500 text-xs"></i></div>
+                    <span class="text-white font-bold text-sm">NoordoBo</span>
                 </div>
-                <button onclick="toggleChat()" style="color: white; background: none; border: none; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="toggleChat()" class="text-white hover:opacity-80"><i
+                        class="fa-solid fa-xmark"></i></button>
             </div>
-            <div id="chatBody" style="flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;">
-                <div class="msg msg-ia">Bonjour ! 👋<br>Je suis l'assistant de Auto-école Noordover. Comment puis-je vous aider ?</div>
+            <div class="chat-body" id="chatBody">
+                <div class="msg msg-ia">Bonjour ! 👋<br>Je suis l'assistant de Auto-école Noordover. Comment puis-je vous aider
+                    ?</div>
             </div>
-            <div style="padding: 16px; border-top: 1px solid #374151; display: flex; gap: 8px;">
-                <input type="text" id="chatInput" placeholder="Écrivez votre message..." style="flex: 1; background: #111827; border: 1px solid #374151; color: white; padding: 10px 14px; border-radius: 99px; outline: none; font-size: 14px;">
-                <button onclick="sendMessage()" style="width: 40px; height: 40px; border-radius: 50%; background: #1a2b49; color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;"><i class="fa-solid fa-paper-plane"></i></button>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Votre message..."
+                    class="w-full bg-slate-100 border-none rounded-full py-2 px-4 text-sm focus:ring-2 focus:ring-brand-500 outline-none"
+                    onkeypress="if(event.key === 'Enter') sendMessage()">
+                <button onclick="sendMessage()"
+                    class="bg-brand-500 text-white rounded-full w-9 h-9 flex items-center justify-center hover:scale-105 transition"><i
+                        class="fa-solid fa-paper-plane text-xs"></i></button>
             </div>
         </div>
-        <div onclick="toggleChat()" style="width: 60px; height: 60px; background: #1a2b49; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-            <i class="fa-solid fa-comment-dots" style="font-size: 24px;"></i>
+        <div class="chat-trigger" onclick="toggleChat()">
+            <i class="fa-solid fa-comment-dots"></i>
         </div>
     </div>
 
     <script>
-        const API_URL = "https://n8n.srv959772.hstgr.cloud/webhook/41a0797f-1756-48da-b74b-4552a8a0171d";
         const ECOLE_ID = "b3bc6c2c-bb5f-40ac-be42-c55fe18438dd";
+        const WEBHOOK_URL = "https://n8n.srv959772.hstgr.cloud/webhook/41a0797f-1756-48da-b74b-4552a8a0171d";
 
         function toggleChat() {
-            const w = document.getElementById('chatWindow');
-            w.style.display = w.style.display === 'none' ? 'flex' : 'none';
+            const chat = document.getElementById('chatWindow');
+            chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
+            if (chat.style.display === 'flex') document.getElementById('chatInput').focus();
         }
 
-        async function sendMessage() {
+        function sendMessage() {
             const input = document.getElementById('chatInput');
-            const txt = input.value.trim();
-            if(!txt) return;
-            
+            const text = input.value.trim();
+            if (!text) return;
+
             const body = document.getElementById('chatBody');
-            body.innerHTML += `<div class="msg msg-user">${txt}</div>`;
+            body.innerHTML += `<div class="msg msg-user">${text}</div>`;
             input.value = '';
             body.scrollTop = body.scrollHeight;
 
-            // Typing
-            const tid = 't-'+Date.now();
-            body.innerHTML += `<div id="${tid}" class="msg msg-ia">...</div>`;
+            const loadingId = 'loading-' + Date.now();
+            body.innerHTML += `<div class="msg msg-ia" id="${loadingId}"><i class="fa-solid fa-spinner fa-spin"></i> Réflexion...</div>`;
             body.scrollTop = body.scrollHeight;
 
-            try {
-                const res = await fetch(API_URL, {
-                    method:'POST', headers:{'Content-Type':'application/json'},
-                    body: JSON.stringify({ message: txt, auto_ecole_id: ECOLE_ID })
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: text, auto_ecole_id: ECOLE_ID })
+            })
+                .then(res => res.text())
+                .then(reponse => {
+                    document.getElementById(loadingId)?.remove();
+                    body.innerHTML += `<div class="msg msg-ia">${reponse || "Merci ! Un conseiller vous recontactera."}</div>`;
+                    body.scrollTop = body.scrollHeight;
+                })
+                .catch(err => {
+                    console.error('Chatbot error:', err);
+                    document.getElementById(loadingId)?.remove();
+                    body.innerHTML += `<div class="msg msg-ia">Désolé, erreur de connexion. Appelez-nous au 06 12 34 56 78.</div>`;
+                    body.scrollTop = body.scrollHeight;
                 });
-                const data = await res.json();
-                document.getElementById(tid).remove();
-                
-                const rep = data.output || data.message || data.text || JSON.stringify(data);
-                body.innerHTML += `<div class="msg msg-ia">${rep}</div>`;
-            } catch(e) {
-                document.getElementById(tid).remove();
-                body.innerHTML += `<div class="msg msg-ia" style="color:#ef4444">Erreur de connexion.</div>`;
-            }
-            body.scrollTop = body.scrollHeight;
         }
-
-        document.getElementById('chatInput').addEventListener('keypress', (e)=>{
-            if(e.key==='Enter') sendMessage();
-        });
     </script>
-    </body></html>
+</body>
+
+</html>
